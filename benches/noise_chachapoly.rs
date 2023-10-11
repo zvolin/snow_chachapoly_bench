@@ -1,21 +1,3 @@
-// TOML:
-//
-// [package]
-// name = "snow_bench"
-// version = "0.1.0"
-// edition = "2021"
-//
-// [dependencies]
-// anyhow = "1.0"
-// snow = "0.9"
-//
-// [dev-dependencies]
-// criterion = "0.5"
-//
-// [[bench]]
-// name = "noise_chachapoly"
-// harness = false
-
 use anyhow::Result;
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use snow::{params::NoiseParams, Builder, TransportState};
@@ -55,6 +37,7 @@ pub fn chacha(c: &mut Criterion) {
             // 16 bytes for noise data
             for chunk in black_box(data.clone()).chunks(MAX_MSG_SIZE - 16) {
                 peer1.write_message(chunk, &mut buf).unwrap();
+                buf = black_box(buf);
             }
         })
     });
