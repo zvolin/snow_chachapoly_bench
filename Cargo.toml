@@ -1,0 +1,15 @@
+[package]
+name = "snow_bench"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0"
+snow = "0.9"
+
+[dev-dependencies]
+criterion = "0.5"
+
+[[bench]]
+name = "noise_chachapoly"
+harness = false
